@@ -1,12 +1,19 @@
 const socket = io();
 
-socket.on('message', (message) => {
-    console.log(message);
-})
-
 const $mesageForm = document.querySelector('#msg-form')
 const $mesageFormInput = document.querySelector('input')
 const $mesageFormButton = document.querySelector('button')
+const $shareLocation = document.querySelector('#share-location')
+const $mesages = document.querySelector('#messages')
+
+// Templates
+const messageTemplate = document.querySelector('#message-template').innerHTML
+
+socket.on('message', (message) => {
+  console.log(message);
+  const html = Mustache.render(messageTemplate, {data:message})
+  $mesages.insertAdjacentHTML('beforeend', html)
+})
 
 $mesageForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -27,7 +34,7 @@ $mesageForm.addEventListener('submit', (e) => {
   })
 })
 
-const $shareLocation = document.querySelector('#share-location')
+
 
 $shareLocation.addEventListener('click', () => {
   if(!navigator.geolocation){
@@ -38,7 +45,7 @@ $shareLocation.addEventListener('click', () => {
 
   navigator.geolocation.getCurrentPosition((position) => {
 
-    const location = {latitude: position.coords.latitude, longitude: position.coords.latitude}
+    const location = {latitude: position.coords.latitude, longitude: position.coords.longitude}
     
     socket.emit('sendLocation', location, () => {
       $shareLocation.removeAttribute('disabled')
