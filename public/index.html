@@ -4,28 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat-Us</title>
+    <link rel="icon" href="./img//chaticon.png">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1>Chat App</h1>
-    
-    <form id="msg-form">
-        <div id="messages"></div>
-        <input name="msg" type="text" placeholder="Enter a message!">
-        <button>Submit</button>
-    </form>
-    <button id="share-location">share location!</button>
-    
-    <script id="message-template" type="text/html">
-        <div>
-            <p>{{data}}</p>
+    <div class="centered-form">
+        <div class="centered-form__form">
+            
+            <form action="/chat.html">
+                <div class="form-field">
+                    <h3>Join Chat</h3>
+                </div>
+                <div class="form-field">
+                    <label>Display name</label>
+                    <input type="text" name="username" placeholder="Display name" required>
+                </div>
+                <div class="form-field">
+                    <label>Room name</label>
+                    <input type="text" name="room" placeholder="Room" required>
+                </div>
+                <div class="form-field">
+                    <button>Join</button>
+                </div>
+            </form>
         </div>
-    </script>
-    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha256-JoAhdrtmvUmN+9RtRzuF66Ok9RkjWz1XuSObZ8CcwSk=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha256-ZsWP0vT+akWmvEMkNYgZrPHKU9Ke8nYBPC3dqONp1mY=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha256-ijqLssetA1NMNjZ+w1zaUafQQLm4IW5OoM8O+4tatME=" crossorigin="anonymous"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./js/chat.js"></script>
+    </div>
 </body>
 </html>
